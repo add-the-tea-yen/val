@@ -1,0 +1,29 @@
+[
+  {
+    "id": "img-1",
+    "type": "image",
+    "src": "/photos/mountains.jpg",
+    "title": "Mountains at Dawn"
+  },
+  {
+    "id": "essay-1",
+    "type": "essay",
+    "title": "Why I Like Masonry Layouts",
+    "content": [
+      "Masonry layouts let content breathe.",
+      "They work beautifully for mixed media."
+    ]
+  },
+  {
+    "id": "yt-1",
+    "type": "youtube",
+    "videoId": "dQw4w9WgXcQ",
+    "rows": 20
+  },
+  {
+    "id": "sp-1",
+    "type": "spotify",
+    "embed": "playlist/37i9dQZF1DXcBWIGoYBM5M",
+    "rows": 15
+  }
+]
