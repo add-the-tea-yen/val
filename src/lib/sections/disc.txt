@@ -1,0 +1,14 @@
+  function submit() {
+    if (selected.size !== 4) return;
+
+    const groups = [...selected].map(w => w.group);
+    const same = groups.every(g => g === groups[0]);
+
+    if (same) {
+      solvedGroups.add(groups[0]);
+    } else {
+      mistakes--;
+    }
+
+    selected.clear();
+  }

@@ -1,11 +1,24 @@
 <script>
-  import MasonryGrid from "$lib/MasonryGrid.svelte";
-  import MasonryTile from "$lib/MasonryTile.svelte";
-  import media from "$lib/content/media.json";
+  import Hero from '$lib/sections/Hero.svelte';
+  import Essay from '$lib/sections/Essay.svelte';
+  import Connections from '$lib/sections/Connections.svelte';
+  import Postcard from '$lib/sections/Postcard.svelte';
+  import PhotoMulti from '$lib/sections/PhotoMulti.svelte';
+  import data from '$lib/data/photomulti/set-a.json';
 </script>
 
-<MasonryGrid>
-  {#each media as item (item.id)}
-    <MasonryTile {item} />
-  {/each}
-</MasonryGrid>
+<main>
+
+  <Essay />
+  <Connections />
+  <PhotoMulti {data} />
+
+</main>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
+</style>

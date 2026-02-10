@@ -1,0 +1,30 @@
+{
+  "title": "Field Notes",
+  "photos": [
+    {
+      "src": "/images/p1.jpg",
+      "alt": "Stone wall",
+      "size": "large"
+    },
+    {
+      "src": "/images/p2.jpg",
+      "alt": "Window light",
+      "size": "small"
+    },
+    {
+      "src": "/images/p3.jpg",
+      "alt": "Empty road",
+      "size": "medium"
+    },
+    {
+      "src": "/images/p4.jpg",
+      "alt": "Blue shadow",
+      "size": "small"
+    },
+    {
+      "src": "/images/p5.jpg",
+      "alt": "Landscape",
+      "size": "large"
+    }
+  ]
+}
