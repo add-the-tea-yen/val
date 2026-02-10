@@ -143,7 +143,7 @@ function submit() {
 
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-
+    
     padding: clamp(1.5rem, 5vw, 4rem) 0.75rem;
     max-width: min(96vw, 720px);
     margin: auto;

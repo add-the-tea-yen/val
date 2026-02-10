@@ -1,0 +1,29 @@
+{
+  "title": "On Stillness and Arrangement",
+  "paragraphs": [
+    {
+      "type": "text",
+      "content": "There is a particular kind of beauty that emerges only when nothing is rushed. In the spaces between objects, in the pause before a thought resolves, meaning gathers quietly."
+    },
+    {
+      "type": "image",
+      "src": "/images/essays/stillness-01.jpg",
+      "alt": "Empty interior with light",
+      "placement": "wide"
+    },
+    {
+      "type": "text",
+      "content": "Magazines once understood this instinctively. Images did not compete with words; they interrupted them, allowing the reader to breathe."
+    },
+    {
+      "type": "image",
+      "src": "/images/essays/stillness-02.jpg",
+      "alt": "Landscape with fog",
+      "placement": "float-right"
+    },
+    {
+      "type": "text",
+      "content": "In digital spaces, we often forget the value of restraint. Everything arrives at once. Nothing lingers."
+    }
+  ]
+}

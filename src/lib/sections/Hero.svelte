@@ -1,20 +1,38 @@
-<section id="about">
-  <div class="content">
-    <h2>About</h2>
-    <p>Some text here.</p>
+<section class="hero">
+  <div class="frame">
+    <img src="/images/hero/cover.jpg" alt="cover"/>
   </div>
 </section>
 
 <style>
-  section {
+  .hero {
     min-height: 100vh;
-    padding: clamp(2rem, 5vw, 6rem);
-    display: flex;
-    align-items: center;
+    background: #ffd400; /* NatGeo yellow */
+    display: grid;
+    place-items: center;
+    padding: clamp(2rem, 6vw, 5rem);
   }
 
-  .content {
-    max-width: 900px;
-    margin: auto;
+  /* IMAGE FRAME */
+  .frame {
+    aspect-ratio: 3 / 4.5; /* tall magazine cover */
+    max-height: 85vh;
+    width: auto;
+  }
+
+  .frame img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* MOBILE TUNING */
+  @media (max-width: 600px) {
+    .frame {
+      max-height: 75vh;
+      aspect-ratio: 3 / 4;
+    }
   }
 </style>
