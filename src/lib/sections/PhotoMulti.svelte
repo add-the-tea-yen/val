@@ -72,6 +72,13 @@ const normalized: PhotoMultiData = {
     display: block;
     border-radius: 2px;
   }
+/* BASE IMAGE RESET */
+.ratio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
   .span-6 { grid-column: span 6; }
   .span-4 { grid-column: span 4; }
@@ -79,17 +86,16 @@ const normalized: PhotoMultiData = {
 
   /* DESKTOP: enforce horizontal feel */
 @media (min-width: 901px) {
+
   .ratio {
-    aspect-ratio: 4 / 3;   /* calm landscape */
     width: 100%;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
   }
+  .span-6 .ratio { aspect-ratio: 5 / 3; }
+  .span-4 .ratio { aspect-ratio: 4 / 3; }
+  .span-3 .ratio { aspect-ratio: 3 / 2; }
 
-  .ratio img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 
