@@ -1,6 +1,6 @@
 <section class="hero">
   <div class="frame">
-    <img src="/images/cover.jpg" alt="cover"/>
+    <img src="./images/cover.jpg" alt="cover"/>
   </div>
 </section>
 

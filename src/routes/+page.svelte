@@ -15,7 +15,7 @@
   <Hero />
   <PhotoMulti data={data2}/>
   <Essay data={essay01data} />
-  <ParallaxHero src="/images/paralax.jpg" alt="Cinematic landscape"/>
+  <ParallaxHero src="./images/paralax.jpg" alt="Cinematic landscape"/>
   <Connections />
   <PhotoMulti {data} />
   <Postcard />

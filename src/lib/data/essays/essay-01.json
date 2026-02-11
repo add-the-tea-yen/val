@@ -7,7 +7,7 @@
     },
     {
       "type": "image",
-      "src": "/images/stillness-01.jpg",
+      "src": "./images/stillness-01.jpg",
       "alt": "Empty interior with light",
       "placement": "wide"
     },
@@ -17,7 +17,7 @@
     },
     {
       "type": "image",
-      "src": "/images/stillness-02.jpg",
+      "src": "./images/stillness-02.jpg",
       "alt": "Landscape with fog",
       "placement": "float-right"
     },
