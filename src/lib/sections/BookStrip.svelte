@@ -63,19 +63,23 @@
 
   .book {
     flex: 0 0 auto;
-    width: 180px;   /* consistent size */
+    width: 200px;           /* fixed width */
+    height: 300px;          /* fixed height */
+    display: block;
+    position: relative;
+    transition: transform 0.25s ease;
     aspect-ratio: 2 / 3;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .book img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  }
+.book img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;      /* keeps proportions visually consistent */
+  border-radius: 4px;
+  display: block;
+}
+
 
   .book:hover {
     transform: translateY(-8px);
