@@ -1,0 +1,20 @@
+{
+  "title": "Library",
+  "books": [
+    {
+      "title": "Maddona in a Fur Coat",
+      "cover": "./images/book1.jpg",
+      "pdf": "./pdfs/book1.pdf"
+    },
+{
+      "title": "Silence",
+      "cover": "./images/book2.jpg",
+      "pdf": "./pdfs/book2.pdf"
+    },
+    {
+      "title": "Psychoanalysis and Feminism",
+      "cover": "./images/book3.jpg",
+      "pdf": "./pdfs/book3.pdf"
+    }
+  ]
+}
