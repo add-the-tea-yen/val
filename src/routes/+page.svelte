@@ -7,6 +7,7 @@
   import Postcard from '$lib/sections/Postcard.svelte';
   import PhotoMulti from '$lib/sections/PhotoMulti.svelte';
   import ParallaxHero from '$lib/sections/ParallaxHero.svelte';
+  import SpotifySection from '$lib/sections/SpotifySection.svelte';
   import data from '$lib/data/photomulti/set-a.json';
   import data2 from '$lib/data/photomulti/set-b.json'
 </script>
@@ -18,6 +19,7 @@
   <ParallaxHero src="./images/paralax.jpg" alt="Cinematic landscape"/>
   <Connections />
   <PhotoMulti {data} />
+  <SpotifySection playlistId="702SfCpEMJ7ExLFbjgWEFT"/> 
   <Postcard />
 </main>
 
