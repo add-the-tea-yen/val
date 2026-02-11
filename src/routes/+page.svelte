@@ -6,12 +6,16 @@
   import Connections from '$lib/sections/Connections.svelte';
   import Postcard from '$lib/sections/Postcard.svelte';
   import PhotoMulti from '$lib/sections/PhotoMulti.svelte';
+  import ParallaxHero from '$lib/sections/ParallaxHero.svelte';
   import data from '$lib/data/photomulti/set-a.json';
+  import data2 from '$lib/data/photomulti/set-b.json'
 </script>
 
 <main>
   <Hero />
+  <PhotoMulti data={data2}/>
   <Essay data={essay01data} />
+  <ParallaxHero src="/images/paralax.jpg" alt="Cinematic landscape"/>
   <Connections />
   <PhotoMulti {data} />
   <Postcard />

@@ -87,7 +87,7 @@ const normalized: PhotoMultiData = {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff; /* subtle fill for empty space */
+  background: transparent; /* subtle fill for empty space */
 }
 
 .ratio img {
