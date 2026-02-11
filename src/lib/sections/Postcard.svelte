@@ -47,8 +47,8 @@ function wrapText(
 }
 
 
-  async function downloadPostcard() {
-  await (document as any).fonts.load('28px "Magda Cameo Regular"');
+async function downloadPostcard() {
+  await (document as any).fonts.load('28px "FF Magda Pro Cameo"');
 
   if (!imageFile) return;
 
@@ -60,49 +60,58 @@ function wrapText(
   template.src = '/images/postcard.jpg';
   await template.decode();
 
-  const cardWidth = 1400;
-  const cardHeight = Math.round(
+  const border = 14;
+
+  const targetWidth = 1200;
+  const imgRatio = uploaded.width / uploaded.height;
+
+  // image defines size directly
+  let drawW = targetWidth;
+  let drawH = drawW / imgRatio;
+
+
+  /* --------------------------------------------------
+     STEP 2: Define postcard size FROM image + border
+  -------------------------------------------------- */
+
+  const cardWidth = drawW + border * 2;
+  // FRONT HEIGHT = image + border
+  const frontHeight = drawH + border * 2;
+
+  // BACK HEIGHT = template scaled to match width
+  const backHeight = Math.round(
     cardWidth * (template.height / template.width)
   );
 
-  // canvas
+
+  /* --------------------------------------------------
+     STEP 3: Create canvas
+  -------------------------------------------------- */
+
   const canvas = document.createElement('canvas');
   canvas.width = cardWidth;
-  canvas.height = cardHeight * 2; // front + back
+  canvas.height = frontHeight + backHeight;
+
 
   const ctx = canvas.getContext('2d')!;
 
-  // FILL ENTIRE CANVAS ONCE (important)
+  /* --------------------------------------------------
+     STEP 4: FRONT PANEL BACKGROUND ONLY
+     (Prevents beige border around template)
+  -------------------------------------------------- */
+
   ctx.fillStyle = '#f7f3ea';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, cardWidth, frontHeight);
 
-  const padding = 40;
-  const border = 14;
+  /* --------------------------------------------------
+     STEP 5: Draw FRONT (uploaded image)
+  -------------------------------------------------- */
 
-  // available area for photo (FRONT PANEL)
-  const areaW = cardWidth - padding * 2;
-  const areaH = cardHeight - padding * 2;
+  const x = border;
 
-  // image cover math
-  const imgRatio = uploaded.width / uploaded.height;
-  const areaRatio = areaW / areaH;
+  // 🔧 FIX: anchor image to top instead of vertical centering
+  const y = border;
 
-  let drawW, drawH;
-
-  if (imgRatio > areaRatio) {
-    drawH = areaH;
-    drawW = drawH * imgRatio;
-  } else {
-    drawW = areaW;
-    drawH = drawW / imgRatio;
-  }
-
-  const x = (cardWidth - drawW) / 2;
-
-  // 🔧 FIX: y is relative to FRONT PANEL (0 → cardHeight)
-  const y = (cardHeight - drawH) / 2;
-
-  // white border
   ctx.fillStyle = '#fff';
   ctx.fillRect(
     x - border,
@@ -111,27 +120,30 @@ function wrapText(
     drawH + border * 2
   );
 
-  // draw uploaded image (FRONT)
   ctx.drawImage(uploaded, x, y, drawW, drawH);
 
-  // ✅ DRAW POSTCARD BACK EXACTLY ONCE
-  ctx.drawImage(template, 0, cardHeight, cardWidth, cardHeight);
+  /* --------------------------------------------------
+     STEP 6: Draw BACK (template exactly once)
+     No background fill here → no beige border
+  -------------------------------------------------- */
 
-  /* POSTCARD TEXT — BACK PANEL ONLY */
+  ctx.drawImage(template, 0, frontHeight, cardWidth, backHeight);
 
-  /* POSTCARD TEXT — BACK PANEL ONLY */
 
-  const backTop = cardHeight;
+  /* --------------------------------------------------
+     STEP 7: Postcard Text
+  -------------------------------------------------- */
 
-  // ink color
+  const backTop = frontHeight;
+
   ctx.fillStyle = '#1f3a6f';
   ctx.textAlign = 'left';
 
-  // MESSAGE (LEFT SIDE)
+  // MESSAGE (LEFT)
   ctx.font = '28px "FF Magda Pro Cameo"';
 
-  const messageX = 90;
-  const messageY = backTop + 160;   // ↓ pushed below printed header
+  const messageX = 120;
+  const messageY = backTop + 180;
   const messageWidth = cardWidth / 2 - 160;
 
   wrapText(
@@ -143,11 +155,11 @@ function wrapText(
     40
   );
 
-  // ADDRESS (RIGHT SIDE)
+  // ADDRESS (RIGHT)
   ctx.font = '26px "FF Magda Pro Cameo"';
 
   const addressX = cardWidth / 2 + 70;
-  const addressY = backTop + 200;   // ↓ aligned with real address zone
+  const addressY = backTop + 220;
   const addressWidth = cardWidth / 2 - 160;
 
   wrapText(
@@ -159,13 +171,18 @@ function wrapText(
     38
   );
 
+  /* --------------------------------------------------
+     STEP 8: Download
+  -------------------------------------------------- */
 
-  /* DOWNLOAD */
   const link = document.createElement('a');
   link.download = 'postcard.png';
   link.href = canvas.toDataURL('image/png');
   link.click();
 }
+
+
+
 
 </script>
 <section class="postcard snap">
@@ -179,12 +196,12 @@ function wrapText(
       </label>
 
       <label>
-        Message (left side)
+        Message
         <textarea bind:value={message} rows="4" />
       </label>
 
       <label>
-        Address (right side)
+        Address
         <textarea bind:value={address} rows="4" />
       </label>
 

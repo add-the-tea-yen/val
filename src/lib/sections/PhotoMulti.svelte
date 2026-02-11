@@ -31,10 +31,11 @@ const normalized: PhotoMultiData = {
 
 
   const layouts: Record<PhotoSize, string> = {
-    large: 'span-6',
-    medium: 'span-4',
-    small: 'span-3'
-  };
+  large: 'span-6 row-2',
+  medium: 'span-4 row-2',
+  small: 'span-3 row-1'
+};
+
 </script>
 
 <section class="photo-multi">
@@ -52,49 +53,66 @@ const normalized: PhotoMultiData = {
 <style>
   section {
     padding: clamp(4rem, 10vw, 8rem) 1.5rem;
-    max-width: 1400px;
+    max-width: 1700px; /* widened */
     margin: auto;
-  }
+}
+
 
   .field {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: clamp(1.5rem, 4vw, 4rem);
-  }
+    gap: clamp(1.5rem, 3vw, 3rem);
+
+    align-items: start; /* prevents vertical stretching */
+    grid-auto-rows: 160px;
+    grid-auto-flow: dense;
+}
+
 
   figure {
     margin: 0;
+    height: 100%;
   }
 
   img {
     width: 100%;
     height: auto;
+    object-fit: cover;
     display: block;
     border-radius: 2px;
   }
-/* BASE IMAGE RESET */
+.ratio {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff; /* subtle fill for empty space */
+}
+
 .ratio img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
+
 
   .span-6 { grid-column: span 6; }
   .span-4 { grid-column: span 4; }
   .span-3 { grid-column: span 3; }
 
+  .row-1 { grid-row: span 1; }
+  .row-2 { grid-row: span 2; }
+  .row-3 { grid-row: span 3; }
+
+
   /* DESKTOP: enforce horizontal feel */
 @media (min-width: 901px) {
 
-  .ratio {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-  }
-  .span-6 .ratio { aspect-ratio: 5 / 3; }
-  .span-4 .ratio { aspect-ratio: 4 / 3; }
-  .span-3 .ratio { aspect-ratio: 3 / 2; }
+  .span-6 { grid-column: span 7; }
+  .span-4 { grid-column: span 5; }
+  .span-3 { grid-column: span 4; }
 
 }
 
