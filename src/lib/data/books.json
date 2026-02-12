@@ -15,6 +15,21 @@
       "title": "Psychoanalysis and Feminism",
       "cover": "./images/book3.jpg",
       "pdf": "./pdfs/book3.pdf"
+    },
+    {
+      "title": "The Cloud of Unknowing",
+      "cover": "./images/book4.jpg",
+      "pdf": "./pdfs/book4.pdf"
+    },
+{
+      "title": "A Star Called the Sun",
+      "cover": "./images/book5.jpg",
+      "pdf": "./pdfs/book5.pdf"
+    },
+    {
+      "title": "Gestalt Therapy",
+      "cover": "./images/book6.jpg",
+      "pdf": "./pdfs/book6.pdf"
     }
   ]
 }
