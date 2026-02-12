@@ -106,7 +106,7 @@ figure img {
 figure.wide {
   column-span: all;
   width: 100%;
-  margin: 4rem 0;
+  margin: 1rem 0;
 }
 
 /* FLOATS DISABLED INSIDE COLUMNS */
@@ -114,7 +114,7 @@ figure.wide {
 .float-right {
   float: none;
   width: 100%;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 /* MOBILE */
