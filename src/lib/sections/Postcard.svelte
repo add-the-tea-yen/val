@@ -43,7 +43,7 @@
   <!-- Postcard Preview -->
   <div class="card postcard-template">
 
-  <img src="/images/postcard.jpg" alt="Postcard Template"/>
+  <img src="./images/postcard.jpg" alt="Postcard Template"/>
 
   <!-- MESSAGE INPUT -->
   <textarea
