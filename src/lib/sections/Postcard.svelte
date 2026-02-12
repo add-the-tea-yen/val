@@ -90,7 +90,6 @@
 
 .postcard-inner {
   width: min(700px, 95vw);
-  padding: clamp(2rem, 5vw, 3rem);
   
   display: flex;
   flex-direction: column;
