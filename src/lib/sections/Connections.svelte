@@ -25,51 +25,53 @@
   3: "#c59ad9"  // purple
 };
 const categories = {
-  0: { name: "Hockey Terms", color: "#f9df6d" },
-  1: { name: "Longing", color: "#a0c35a" },
-  2: { name: "___ Cake", color: "#b0c4ef" },
-  3: { name: "Things You Put Drinks On", color: "#f5a6c8" }
+  0: { name: "I KNEW WHEN _____", color: "#f9df6d" },
+  1: { name: "PLACES BY THE SEA WE'VE BEEN", color: "#a0c35a" },
+  2: { name: "THINGS TO DO TOGETHER", color: "#b0c4ef" },
+  3: { name: "MY LOVE FOR YOU IS", color: "#f5a6c8" }
 };
 
 const GROUP_INFO = {
   0: {
-    label: "CONSTRUCT",
-    words: ["FORM", "MAKE", "MOLD", "PRODUCE"]
+    label: "I KNEW WHEN _____",
+    words: ["SIKEN", "LACAN", "PINTREST", "MOUNTAIN"]
   },
   1: {
-    label: "HOCKEY TERMS",
-    words: ["RINK", "PUCK", "DERBY", "ICE"]
+    label: "WE WENT TO ___ BY THE SEA",
+    words: ["PARK", "ROAD", "TAJ", "DOCK"]
   },
   2: {
-    label: "LONGING",
-    words: ["MOON", "PINE", "YEARN", "SWOON"]
+    label: "THINGS TO DO TOGETHER",
+    words: ["YIYI", "MINECRAFT", "SCREENPLAY", "LIVE"]
   },
   3: {
-    label: "THINGS YOU PUT DRINKS ON",
-    words: ["COASTER", "COUNTER", "TRAY", "TABLE"]
+    label: "MY LOVE FOR YOU IS",
+    words: ["UNENDING", "VAST", "UNTOLD", "COSMIC"]
   }
 };
 
 let words = [
-  { text: "NET", group: 0 },
-  { text: "RETURN", group: 0 },
-  { text: "BLOCK", group: 0 },
-  { text: "YIELD", group: 0 },
+  { text: "SIKEN", group: 0 },
+  { text: "LIVE", group: 2 },
+  { text: "PARK", group: 1 },
+  { text: "MOUNTAIN", group: 0 },
 
-  { text: "RINK", group: 1 },
-  { text: "PUCK", group: 1 },
-  { text: "DERBY", group: 1 },
-  { text: "ICE", group: 1 },
+  
+  { text: "ROAD", group: 1 },
+  { text: "UNENDING", group: 3 },
+  { text: "DOCK", group: 1 },
+  { text: "SCREENPLAY", group: 2 },
 
-  { text: "MOON", group: 2 },
-  { text: "CAKE", group: 2 },
-  { text: "PINE", group: 2 },
-  { text: "YEARN", group: 2 },
+  { text: "UNTOLD", group: 3 },
+  { text: "MINECRAFT", group: 2 },
+  { text: "LACAN", group: 0 },  
+  { text: "TAJ", group: 1 },
 
-  { text: "BRICK", group: 3 },
-  { text: "COASTER", group: 3 },
-  { text: "BAG", group: 3 },
-  { text: "COUNTER", group: 3 }
+  
+  { text: "VAST", group: 3 },
+  { text: "PINTREST", group: 0 },
+  { text: "YIYI", group: 2 },
+  { text: "COSMIC", group: 3 }
 ];
 
 
@@ -402,7 +404,7 @@ button:active {
   opacity: 0.85;
 }
 
-.category {
+.category {       
   font-size: 0.9rem;
 }
 
