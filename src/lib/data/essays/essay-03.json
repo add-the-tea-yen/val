@@ -3,7 +3,8 @@
   "paragraphs": [
     {
       "type": "text",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis lorem sem. Vivamus sit amet efficitur leo, eu lobortis metus. Quisque risus lorem, placerat sed velit eu, hendrerit iaculis sem."
+      "content": "Let me start by saying that I know this is a lot, but idk I enjoyed every second of it in a purely personal capacity as much as the social one between us, which I suppose occurs once you look at this. Nevertheless, the act of making this, laborious as it was, it was an act in practicing my love for you, and there is hardly anything else i would rather spend my life doing than that. I love you, and that is a fact, unchanged and unchanging. ",
+      "placement": "wide"
     },
     {
       "type": "image",
@@ -13,7 +14,8 @@
     },
     {
       "type": "text",
-      "content": "Nulla quis lacus ut mi elementum convallis non vel turpis. Aliquam dapibus elit sit amet est pharetra, in vehicula massa fringilla"
+      "content": "Nulla quis lacus ut mi elementum convallis non vel turpis. Aliquam dapibus elit sit amet est pharetra, in vehicula massa fringilla",
+      "placement": "wide"
     },
     {
       "type": "image",
@@ -23,7 +25,8 @@
     },
     {
       "type": "text",
-      "content": "Donec dui urna, bibendum vitae euismod vel, rhoncus vel velit. Aliquam pretium, dui et molestie ultricies, odio magna efficitur urna."
+      "content": "Donec dui urna, bibendum vitae euismod vel, rhoncus vel velit. Aliquam pretium, dui et molestie ultricies, odio magna efficitur urna.",
+      "placement": "wide"
     }
   ]
 }
