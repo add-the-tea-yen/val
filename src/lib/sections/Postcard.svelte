@@ -21,7 +21,7 @@
 
 <div class="postcard-inner">
   <div class="postcard-header">
-<h2>send me a postcards :)</h2>
+<h2>send me a postcards!</h2>
 
 <div class="upload-area">
   <label class="download">

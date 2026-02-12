@@ -7,7 +7,7 @@
 <style>
 .hero {
   min-height: 100vh;
-  background: #ffd400;
+  background: #ffbb00;
   display: flex;
   align-items: center;
   justify-content: center;
