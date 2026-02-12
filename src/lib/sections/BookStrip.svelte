@@ -80,7 +80,6 @@
   display: block;
 }
 
-
   .book:hover {
     transform: translateY(-8px);
   }
