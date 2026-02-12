@@ -1,286 +1,296 @@
 <script lang="ts">
-  let imageFile: File | null = null;
-  let imageUrl: string | null = null;
-  let message = '';
-  let address = '';
-
+  let uploadedImage: string | null = null;
 
   function handleImageUpload(e: Event) {
-    const input = e.target as HTMLInputElement;
-    if (!input.files?.length) return;
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
 
-    imageFile = input.files[0];
-    imageUrl = URL.createObjectURL(imageFile);
+    const reader = new FileReader();
+    reader.onload = () => {
+      uploadedImage = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
-function wrapText(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  x: number,
-  y: number,
-  maxWidth: number,
-  lineHeight: number
-) {
-  const paragraphs = text.split('\n');
-  let offsetY = 0;
-
-  for (const para of paragraphs) {
-    const words = para.split(' ');
-    let line = '';
-
-    for (let i = 0; i < words.length; i++) {
-      const testLine = line + words[i] + ' ';
-      const metrics = ctx.measureText(testLine);
-
-      if (metrics.width > maxWidth && i > 0) {
-        ctx.fillText(line, x, y + offsetY);
-        line = words[i] + ' ';
-        offsetY += lineHeight;
-      } else {
-        line = testLine;
-      }
-    }
-
-    ctx.fillText(line, x, y + offsetY);
-    offsetY += lineHeight * 1.2;
-  }
-}
-
-
-async function downloadPostcard() {
-  await (document as any).fonts.load('28px "FF Magda Pro Cameo"');
-
-  if (!imageFile) return;
-
-  const uploaded = new Image();
-  uploaded.src = imageUrl!;
-  await uploaded.decode();
-
-  const template = new Image();
-  template.src = '/images/postcard.jpg';
-  await template.decode();
-
-  const border = 14;
-
-  const targetWidth = 1200;
-  const imgRatio = uploaded.width / uploaded.height;
-
-  // image defines size directly
-  let drawW = targetWidth;
-  let drawH = drawW / imgRatio;
-
-
-  /* --------------------------------------------------
-     STEP 2: Define postcard size FROM image + border
-  -------------------------------------------------- */
-
-  const cardWidth = drawW + border * 2;
-  // FRONT HEIGHT = image + border
-  const frontHeight = drawH + border * 2;
-
-  // BACK HEIGHT = template scaled to match width
-  const backHeight = Math.round(
-    cardWidth * (template.height / template.width)
-  );
-
-
-  /* --------------------------------------------------
-     STEP 3: Create canvas
-  -------------------------------------------------- */
-
-  const canvas = document.createElement('canvas');
-  canvas.width = cardWidth;
-  canvas.height = frontHeight + backHeight;
-
-
-  const ctx = canvas.getContext('2d')!;
-
-  /* --------------------------------------------------
-     STEP 4: FRONT PANEL BACKGROUND ONLY
-     (Prevents beige border around template)
-  -------------------------------------------------- */
-
-  ctx.fillStyle = '#f7f3ea';
-  ctx.fillRect(0, 0, cardWidth, frontHeight);
-
-  /* --------------------------------------------------
-     STEP 5: Draw FRONT (uploaded image)
-  -------------------------------------------------- */
-
-  const x = border;
-
-  // 🔧 FIX: anchor image to top instead of vertical centering
-  const y = border;
-
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(
-    x - border,
-    y - border,
-    drawW + border * 2,
-    drawH + border * 2
-  );
-
-  ctx.drawImage(uploaded, x, y, drawW, drawH);
-
-  /* --------------------------------------------------
-     STEP 6: Draw BACK (template exactly once)
-     No background fill here → no beige border
-  -------------------------------------------------- */
-
-  ctx.drawImage(template, 0, frontHeight, cardWidth, backHeight);
-
-
-  /* --------------------------------------------------
-     STEP 7: Postcard Text
-  -------------------------------------------------- */
-
-  const backTop = frontHeight;
-
-  ctx.fillStyle = '#1f3a6f';
-  ctx.textAlign = 'left';
-
-  // MESSAGE (LEFT)
-  ctx.font = '28px "FF Magda Pro Cameo"';
-
-  const messageX = 120;
-  const messageY = backTop + 180;
-  const messageWidth = cardWidth / 2 - 160;
-
-  wrapText(
-    ctx,
-    message || 'Wish you were here.',
-    messageX,
-    messageY,
-    messageWidth,
-    40
-  );
-
-  // ADDRESS (RIGHT)
-  ctx.font = '26px "FF Magda Pro Cameo"';
-
-  const addressX = cardWidth / 2 + 70;
-  const addressY = backTop + 220;
-  const addressWidth = cardWidth / 2 - 160;
-
-  wrapText(
-    ctx,
-    address || 'Recipient Name\nStreet Address\nCity, Country',
-    addressX,
-    addressY,
-    addressWidth,
-    38
-  );
-
-  /* --------------------------------------------------
-     STEP 8: Download
-  -------------------------------------------------- */
-
-  const link = document.createElement('a');
-  link.download = 'postcard.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-}
-
-
-
+  let message = '';
+  let recipient = '';
 
 </script>
-<section class="postcard snap">
-  <div class="layout">
-    <div class="controls">
-      <h2>send me postcards :)</h2>
 
-      <label>
-        Image
-        <input type="file" accept="image/*" on:change={handleImageUpload} />
-      </label>
+<section class="postcard-section">
 
-      <label>
-        Message
-        <textarea bind:value={message} rows="4" />
-      </label>
+<div class="postcard-inner">
+  <div class="postcard-header">
+<h2>send me a postcards :)</h2>
 
-      <label>
-        Address
-        <textarea bind:value={address} rows="4" />
-      </label>
+<div class="upload-area">
+  <label class="download">
+    add an image
+    <input type="file" accept="image/*" on:change={handleImageUpload} hidden />
+  </label>
+</div>
+
+</div>
+  
+<div class="postcard-frame">
+  <div class="photo-preview">
+  {#if uploadedImage}
+    <img src={uploadedImage} alt="Uploaded preview" />
+  {/if}
+</div>
 
 
-      <button on:click={downloadPostcard}>
-        Download Postcard
-      </button>
+  <!-- Postcard Preview -->
+  <div class="card postcard-template">
+
+  <img src="/images/postcard.jpg" alt="Postcard Template"/>
+
+  <!-- MESSAGE INPUT -->
+  <textarea
+    bind:value={message}
+    class="message-input"
+    placeholder="message"
+  ></textarea>
+
+  <!-- NAME INPUT -->
+  <textarea
+    bind:value={recipient}
+    class="recipient-input"
+    placeholder="address"
+  ></textarea>
+
+</div>
+
+    <!-- LIVE NAME -->
+    <div class="recipient">
+      {recipient || ''}
     </div>
+</div>
 
-    <div class="preview">
-      <div class="mock">
-        {#if imageUrl}
-          <img src={imageUrl} alt="Preview" />
-        {/if}
-        <p>{message || 'Your message will appear here…'}</p>
-      </div>
-    </div>
-  </div>
+</div>
+
 </section>
+
+
 <style>
-  section {
-    min-height: 100vh;
-    padding: clamp(3rem, 8vw, 6rem) 1.5rem;
-    background: #f7f3ea;
-  }
+.postcard-section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  justify-content: center;   /* vertical center */
+  align-items: center;
+}
 
-  .layout {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
+.postcard-section h2 {
+  margin-bottom: 0.5rem;
+}
 
-  .controls label {
-    display: block;
-    margin-bottom: 1rem;
-  }
+.postcard-inner {
+  width: min(700px, 95vw);
+  padding: clamp(2rem, 5vw, 3rem);
+  
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-  textarea,
-  input {
-    width: 100%;
-    margin-top: 0.4rem;
-  }
+h2 {
+  font-family: 'Helvetica Neue',sans-serif;
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
+  font-weight: 600;
+  color: #1f3a6f;
+}
 
-  button {
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-  }
+/* ====================
+   COMPOSER
+==================== */
 
-  .preview {
-    display: grid;
-    place-items: center;
-  }
 
-  .mock {
-    width: 320px;
-    aspect-ratio: 3 / 2;
-    background: white;
-    padding: 1rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    display: grid;
-    grid-template-rows: 1fr auto;
-    gap: 0.5rem;
-  }
 
-  .mock img {
-    width: 100%;
-    object-fit: cover;
-  }
+textarea {
+  width: 100%;
+  height: 220px;
+  border: none;
+  background: black;
+  color: #ccc;
+  font-size: 1.4rem;
+  padding: 1rem;
+  resize: none;
+}
 
-  .mock p {
-    font-size: 0.85rem;
-    text-align: center;
-  }
 
-  @media (max-width: 800px) {
-    .layout {
-      grid-template-columns: 1fr;
-    }
-  }
+
+/* ====================
+   DOWNLOAD BUTTON
+==================== */
+
+.download {
+  background: white;
+  color: #1f3a6f;
+  font-family: 'Helvetica Neue',sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.8rem, 4vw, 1.4rem);
+  cursor: pointer;
+}
+
+.download:hover {
+  text-decoration: underline;
+}
+
+
+.card {
+  position: relative;
+  width: 100%;
+}
+
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+/* MESSAGE AREA */
+
+
+/* ADDRESS AREA */
+.recipient {
+  position: absolute;
+  top: 38%;
+  right: 8%;
+  width: 32%;
+
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  color: #1f3a6f;
+}
+.card {
+  position: relative;
+  width: min(700px, 95vw);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+/* MESSAGE AREA */
+.message-input {
+
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  width: 40%;
+  height: 85%;
+
+  background: transparent;
+  border: none;
+  resize: none;
+
+  font-family: 'Inter',sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+  line-height: 1.5;
+  color: #1f3a6f;
+
+  outline: none;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ADDRESS AREA */
+.recipient-input {
+
+  position: absolute;
+  top: 41%;
+  right: 12%;
+  width: 32%;
+  height: 35%;
+
+  background: transparent;
+  border: none;
+  resize: none;
+
+  font-family: 'Inter',sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.2vw, 1rem);
+  color: #1f3a6f;
+
+  outline: none;
+
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.recipient-input::-webkit-scrollbar{
+  display: none;
+}
+.message-input::-webkit-scrollbar{
+  display: none;
+}
+
+/* Upload box */
+
+.upload-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+
+
+/* Uploaded image */
+
+.photo-preview {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: #f3eed8;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-preview img {
+  max-width: 96%;
+  max-height: 96%;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.postcard-frame {
+  width: min(700px, 95vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.postcard-template {
+  position: relative;
+  width: 100%;
+}
+
+.postcard-header {
+  width: min(700px, 95vw);
+  align-self: stretch;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.postcard-header h2 {
+  margin-bottom: 0.4rem;
+}
+
+.upload-area {
+  justify-content: flex-start;
+}
+
+
 </style>

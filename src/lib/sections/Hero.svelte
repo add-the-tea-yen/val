@@ -5,34 +5,37 @@
 </section>
 
 <style>
-  .hero {
-    min-height: 100vh;
-    background: #ffd400; /* NatGeo yellow */
-    display: grid;
-    place-items: center;
-    padding: clamp(2rem, 6vw, 5rem);
-  }
+.hero {
+  min-height: 100vh;
+  background: #ffd400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 5rem);
+  box-sizing: border-box;
+}
+
 
   /* IMAGE FRAME */
+.frame {
+  height: min(85vh, 900px);
+  aspect-ratio: 3 / 4.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 600px) {
   .frame {
-    aspect-ratio: 3 / 4.5; /* tall magazine cover */
-    max-height: 85vh;
-    width: auto;
+    height: min(75vh, 600px);
   }
+}
 
-  .frame img {
-    height: 100%;
-    width: auto;
-    max-width: 100%;
-    display: block;
-    object-fit: contain;
-  }
-
-  /* MOBILE TUNING */
-  @media (max-width: 600px) {
-    .frame {
-      max-height: 75vh;
-      aspect-ratio: 3 / 4;
-    }
-  }
 </style>

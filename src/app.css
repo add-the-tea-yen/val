@@ -8,9 +8,27 @@ body {
 }
 
 @font-face {
-  font-family: 'FF Magda Pro Cameo';
-  src: url('/fonts/MagdaCameoRegular.otf') format('otf');
+  font-family: 'MagdaCameoRegular';
+  src: url('./fonts/MagdaCameoRegular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+
+/* GLOBAL SCROLLBAR REMOVAL */
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Remove scrollbar but keep scroll functionality */
+html {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE / Edge */
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  display: none;               /* Chrome / Safari */
 }

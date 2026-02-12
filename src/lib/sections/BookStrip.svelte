@@ -13,7 +13,7 @@
   export let data: BookStripData;
 </script>
 
-<section class="book-strip">
+<section class="book-strip" style="overflow-x: hidden;">
   <h2>{data.title}</h2>
 
   <div class="row">
@@ -39,18 +39,22 @@
   }
 
   h2 {
+    font-family: 'Helvetica Neue',sans-serif;
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 2.5rem;
     font-weight: 500;
+    color: #1f3a6f;
   }
 
   .row {
-    display: flex;
-    gap: clamp(1.5rem, 3vw, 3rem);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 1rem;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+
+  max-width: 900px;
+  margin: 0 auto;
+  background: transparent;
+}
 
   /* Hide scrollbar cleanly */
   .row::-webkit-scrollbar {
@@ -61,32 +65,60 @@
     scrollbar-width: none;
   }
 
-  .book {
-    flex: 0 0 auto;
-    width: 200px;           /* fixed width */
-    height: 300px;          /* fixed height */
-    display: block;
-    position: relative;
-    transition: transform 0.25s ease;
-    aspect-ratio: 2 / 3;
-  }
+.book {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 2 / 3;
+
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  background: transparent;
+}
+
 
 .book img {
+
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
   background: transparent;      /* keeps proportions visually consistent */
   border-radius: 4px;
   display: block;
 }
 
   .book:hover {
-    transform: translateY(-8px);
-  }
+  transform: translateY(-6px) scale(1.015);
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.16),
+    0 2px 6px rgba(0,0,0,0.08);
+  background:transparent ;
+}
+
+
+
 
   @media (min-width: 1200px) {
     .book {
       width: 220px;
     }
   }
+ @media (max-width: 900px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>

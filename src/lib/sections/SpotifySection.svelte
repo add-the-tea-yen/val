@@ -3,7 +3,7 @@
   export let height: number = 380;
 </script>
 
-<section class="spotify-hero">
+<section class="spotify-hero" style="background-image: url('./images/spc.jpg');">
   <div class="overlay">
     <div class="embed">
       <iframe
@@ -22,7 +22,7 @@
   .spotify-hero {
     position: relative;
     min-height: 100vh;
-    background-image: url('./images/spc.jpg');
+    
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* subtle parallax feel */
