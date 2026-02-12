@@ -20,8 +20,8 @@
   <Essay data={essay01data} />
   <ParallaxHero src="./images/paralax.jpg" alt="Cinematic landscape"/>
   <Connections />
-  <BookStrip data={booksData} />
   <PhotoMulti {data} />
+  <BookStrip data={booksData} />
   <SpotifySection playlistId="702SfCpEMJ7ExLFbjgWEFT"/> 
   <Postcard />
 </main>

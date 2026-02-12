@@ -1,0 +1,29 @@
+{
+  "title": "Ipsum Lorem Sit Dolor Amet",
+  "paragraphs": [
+    {
+      "type": "text",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis lorem sem. Vivamus sit amet efficitur leo, eu lobortis metus. Quisque risus lorem, placerat sed velit eu, hendrerit iaculis sem."
+    },
+    {
+      "type": "image",
+      "src": "./images/stillness-01.jpg",
+      "alt": "Empty interior with light",
+      "placement": "wide"
+    },
+    {
+      "type": "text",
+      "content": "Nulla quis lacus ut mi elementum convallis non vel turpis. Aliquam dapibus elit sit amet est pharetra, in vehicula massa fringilla"
+    },
+    {
+      "type": "image",
+      "src": "./images/stillness-02.jpg",
+      "alt": "Landscape with fog",
+      "placement": "float-right"
+    },
+    {
+      "type": "text",
+      "content": "Donec dui urna, bibendum vitae euismod vel, rhoncus vel velit. Aliquam pretium, dui et molestie ultricies, odio magna efficitur urna."
+    }
+  ]
+}
