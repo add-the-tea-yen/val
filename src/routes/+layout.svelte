@@ -6,6 +6,8 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>happy valentines day I love you!</title>
 </svelte:head>
+
 
 {@render children()}

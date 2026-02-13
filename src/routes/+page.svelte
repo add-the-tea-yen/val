@@ -17,7 +17,7 @@
   import data2 from '$lib/data/photomulti/set-b.json'
   import data3 from '$lib/data/photomulti/set-c.json';
   import data4 from '$lib/data/photomulti/set-d.json'
-  import data5 from '$lib/data/photomulti/set-e.json';
+ 
   
 </script>
 
@@ -36,7 +36,7 @@
   <ParallaxHero src="./images/parallax3.jpg" alt="Cinematic landscape"/>
   <BookStrip data={booksData} />
   <!--3. horses-->
-  <PhotoMulti data={data5} />
+ 
   <SpotifySection playlistId="702SfCpEMJ7ExLFbjgWEFT"/> 
   <!--4. horses-->
   <PhotoMulti data={data4} />
